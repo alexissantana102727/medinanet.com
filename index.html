@@ -1,310 +1,100 @@
- <!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MEDINA Internet — Desde S/ 30 al mes + Servicio Técnico</title>
-  <meta name="description" content="Internet inalámbrico desde S/ 30 al mes y servicio técnico profesional de celulares. Cobertura local, instalación rápida, soporte por WhatsApp." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cpath d='M68 132c0-38 30-68 68-68s68 30 68 68-30 68-68 68-68-30-68-68zm106-22-60 60-28-28' fill='none' stroke='%23fff' stroke-width='16' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
-  <!-- Tailwind CSS Play CDN (v4 browser build) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <style type="text/tailwindcss">
-    @theme {
-      --color-brand: #0ea5e9; /* sky-500 */
-      --color-brand-600: #0284c7; /* sky-600 */
-      --color-ink: #0f172a; /* slate-900 */
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ECorte de Servicio </title>
   <style>
-    .bg-grid {
-      background-image: radial-gradient(currentColor 1px, transparent 1px);
-      background-size: 16px 16px;
-      color: rgba(14,165,233,.25);
+    :root{
+      --bg:#04050a; --neon:#00d1ff; --accent:#9b6bff; --glass: rgba(255,255,255,0.04);
+      --warning:#ffc84d; --danger:#ff6b7a; --soft:#cfeefe;
+      --mono:'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
     }
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:radial-gradient(1200px 600px at 10% 20%, rgba(7,20,40,0.6), transparent), linear-gradient(180deg,var(--bg), #020306 60%); color:#dbefff;}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+    .card{width:100%;max-width:1100px;background:linear-gradient(180deg, rgba(10,14,20,0.6), rgba(4,6,10,0.6));border-radius:18px;padding:36px;position:relative;box-shadow:0 10px 40px rgba(3,8,20,0.7);overflow:hidden;border:1px solid rgba(0,209,255,0.06)}
+    .neon-line{position:absolute;left:-10%;right:-10%;height:2px;background:linear-gradient(90deg, transparent, var(--neon), transparent);mix-blend-mode:screen;opacity:0.6;filter:blur(8px)}
+    .neon-line.l1{top:18%}.neon-line.l2{top:82%}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;color:var(--soft);letter-spacing:0.6px}
+    .logo-hex{width:42px;height:42px;border-radius:8px;background:linear-gradient(135deg,var(--neon),var(--accent));display:grid;place-items:center;color:#021221;font-weight:800;font-family:var(--mono);box-shadow:0 6px 30px rgba(0,209,255,0.08);animation:pulse 3.6s linear infinite}
+    .cols{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .big-title{font-size:42px;line-height:1.02;margin:10px 0 8px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--soft)}
+    .glow{color:var(--neon);text-shadow:0 0 20px rgba(0,209,255,0.28),0 0 40px rgba(155,107,255,0.06)}
+    .desc{color:rgba(200,230,255,0.9);font-size:16px;opacity:0.92}
+    .status{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+    .status h4{margin:0;font-size:13px;color:rgba(210,240,255,0.9)}
+    .status .state{font-weight:800;font-size:22px;margin-top:6px;color:var(--danger)}
+    .status .eta{margin-top:12px;font-size:13px;color:rgba(200,230,255,0.85)}
+    .btn{padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--soft);font-weight:600;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--neon),var(--accent));color:#041221;border:none;box-shadow:0 6px 30px rgba(0,209,255,0.12)}
+    .codebox{font-family:var(--mono);background:linear-gradient(180deg, rgba(2,8,16,0.4), rgba(2,6,10,0.3));padding:14px;border-radius:10px;border:1px solid rgba(0,0,0,0.25);font-size:13px;color:#a6f0ff}
+    @media (max-width:880px){.cols{grid-template-columns:1fr;}.status{order:3}.neon-line{display:none}.big-title{font-size:30px}}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
   </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
-  <!-- Top Bar -->
-  <div class="w-full bg-slate-900 text-white text-sm">
-    <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
-      <p class="hidden sm:block">Instalación rápida ·  Sin contratos forzosos ·  Soporte por WhatsApp</p>
-      <a href="#contacto" class="underline hover:no-underline">Atención hoy: 9:00–17:00</a>
-    </div>
-  </div>
+<body>
+  <div class="wrap">
+    <div class="card" role="alert" aria-live="assertive">
+      <div class="neon-line l1"></div>
+      <div class="neon-line l2"></div>
+      <div class="brand"><div class="logo-hex">WIFI</div><div>MEDINA_NET</div></div>
+      <div class="cols">
+        <div>
+          <div class="big-title"><span class="glow">18 CADA MES</span> — CORTE DE SERVICIO</div>
+          <div class="desc">El servicio de internet está temporalmente interrumpido...</div>
+          <div style="margin-top:18px;display:flex;gap:16px;flex-wrap:wrap">
+            <button class="btn primary" id="refreshBtn">Intentar reconectar</button>
+            <button class="btn ghost" id="reportBtn">Reportar incidencia</button>
+          <div style="margin-top:18px;display:flex;gap:16px;flex-wrap:wrap">
+            <button class="btn primary" id="refreshBtn">INFO: 935128270</button>  
+            <div class="codebox">Tu servicio ha sido suspendido debido a falta de pago. Para reactivar tu cuenta, por favor, realiza el pago correspondiente.
 
-  <!-- Header -->
-  <header class="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
-    <a href="#home" class="flex items-center gap-2 font-bold text-xl text-slate-900">
-      <!-- Logo principal con icono WiFi y marca Medina Net -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="h-10 w-10 text-[--color-brand]" fill="currentColor">
-        <circle cx="32" cy="32" r="32" fill="currentColor"/>
-        <path d="M12 32c11-11 29-11 40 0M18 40c8-8 20-8 28 0M26 48c4-4 8-4 12 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <text x="32" y="37" text-anchor="middle" font-size="12" fill="#fff" font-family="Arial">M</text>
-      </svg>
-      <span>Medina Net</span>
-    </a>
-    <nav class="hidden md:flex items-center gap-6 text-sm">
-      <a href="#planes" class="hover:text-[--color-brand]">Planes</a>
-      <a href="#tecnico" class="hover:text-[--color-brand]">Servicio Técnico</a>
-      <a href="#cobertura" class="hover:text-[--color-brand]">Cobertura</a>
-	    <a href="#mantenimiento" class="hover:text-[--color-brand]">Mantenimiento PC</a>
-      <a href="#faq" class="hover:text-[--color-brand]">Preguntas</a>
-      <a href="#contacto" class="px-4 py-2 rounded-xl bg-[--color-brand] text-white hover:bg-[--color-brand-600]">Contáctanos</a>
-    </nav>
-    <button id="menuBtn" class="md:hidden inline-flex p-2 rounded-xl border border-slate-200" aria-label="Abrir menú">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-  </header>
-  <nav id="mobileNav" class="md:hidden hidden px-4 pb-4">
-    <div class="grid gap-2 text-sm">
-      <a href="#planes" class="px-3 py-2 rounded-lg hover:bg-slate-50">Planes</a>
-      <a href="#tecnico" class="px-3 py-2 rounded-lg hover:bg-slate-50">Servicio Técnico</a>
-      <a href="#cobertura" class="px-3 py-2 rounded-lg hover:bg-slate-50">Cobertura</a>
-	  <a href="#mantenimiento" class="px-3 py-2 rounded-lg hover:bg-slate-50">Mantenimiento PC</a>  
-	   <a href="#mantenimiento" class="px-3 py-2 rounded-lg hover:bg-slate-50">Mantenimiento PC</a>
-      <a href="#faq" class="px-3 py-2 rounded-lg hover:bg-slate-50">Preguntas</a>
-      <a href="#contacto" class="px-3 py-2 rounded-lg bg-[--color-brand] text-white">Contáctanos</a>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section id="home" class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-grid pointer-events-none"></div>
-    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Internet inalámbrico desde <span class="text-[--color-brand]">S/ 30</span> al mes</h1>
-        <p class="mt-4 text-lg text-slate-600">Conexión estable para tu casa o negocio. Sin contratos forzosos, instalación rápida y soporte técnico especializado.</p>
-        <div class="mt-6 flex flex-wrap items-center gap-3">
-          <a href="#contacto" class="px-5 py-3 rounded-xl bg-[--color-brand] text-white font-medium hover:bg-[--color-brand-600]">Quiero contratar</a>
-          <a href="#planes" class="px-5 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 font-medium">Ver planes</a>
-        </div>
-        <div class="mt-6 flex items-center gap-6 text-sm text-slate-600">
-          <div class="flex items-center gap-2"><span class="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500"></span> Instalación en 24-48h</div>
-          <div class="flex items-center gap-2"><span class="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500"></span> Soporte por WhatsApp</div>
-        </div>
-        <p class="mt-2 text-xs text-slate-400">*Sujeto a cobertura y disponibilidad.</p>
-      </div>
-      <div class="relative">
-        <div class="aspect-[4/3] rounded-2xl shadow-xl bg-gradient-to-br from-sky-100 via-white to-sky-100 border border-slate-200 p-6 flex items-center justify-center">
-          <!-- Simple illustration -->
-          <svg class="w-full h-full" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="40" y="40" width="520" height="370" rx="24" fill="white" stroke="#e2e8f0"/>
-            <circle cx="140" cy="140" r="54" fill="#0ea5e9" opacity="0.15"/>
-            <circle cx="140" cy="140" r="34" fill="#0ea5e9" opacity="0.25"/>
-            <circle cx="140" cy="140" r="14" fill="#0ea5e9"/>
-            <path d="M260 130h240M260 170h180M260 210h220" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
-            <rect x="260" y="260" width="180" height="90" rx="12" fill="#0ea5e9" opacity="0.1"/>
-            <path d="M276 296h148" stroke="#0ea5e9" stroke-width="10" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Planes -->
-  <section id="planes" class="max-w-6xl mx-auto px-4 py-16">
-    <div class="text-center max-w-2xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold">Planes flexibles para cada necesidad</h2>
-      <p class="mt-3 text-slate-600">Elige el plan ideal y empieza a navegar. Todos incluyen router Wi‑Fi y soporte técnico.</p>
-    </div>
-    <div class="mt-10 grid md:grid-cols-3 gap-6">
-      <!-- Básico -->
-      <div class="rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <h3 class="font-bold text-lg">Básico</h3>
-        <p class="text-sm text-slate-500">Para redes sociales y clases</p>
-        <div class="mt-4 text-3xl font-extrabold">S/ 30 <span class="text-base font-medium text-slate-500">/mes</span></div>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Hasta 10 Mbps*</li>
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Router Wi‑Fi incluido</li>
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Soporte por WhatsApp</li>
-        </ul>
-        <a href="#contacto" class="mt-6 inline-block w-full text-center px-4 py-2.5 rounded-xl bg-[--color-brand] text-white font-medium hover:bg-[--color-brand-600]">Elegir</a>
-      </div>
-      <!-- Hogar -->
-      <div class="rounded-2xl border-2 border-[--color-brand] p-6 shadow-md relative">
-        <div class="absolute -top-3 right-4 px-2 py-1 text-xs rounded-full bg-[--color-brand] text-white">Recomendado</div>
-        <h3 class="font-bold text-lg">Hogar</h3>
-        <p class="text-sm text-slate-500">Streaming y videollamadas</p>
-        <div class="mt-4 text-3xl font-extrabold">S/ 60 <span class="text-base font-medium text-slate-500">/mes</span></div>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Hasta 30 Mbps*</li>
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Router Wi‑Fi AC</li>
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Prioridad de soporte</li>
-        </ul>
-        <a href="#contacto" class="mt-6 inline-block w-full text-center px-4 py-2.5 rounded-xl bg-[--color-brand] text-white font-medium hover:bg-[--color-brand-600]">Elegir</a>
-      </div>
-      <!-- Pro -->
-      <div class="rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <h3 class="font-bold text-lg">Pro</h3>
-        <p class="text-sm text-slate-500">Negocios y gamers casuales</p>
-        <div class="mt-4 text-3xl font-extrabold">S/ 90 <span class="text-base font-medium text-slate-500">/mes</span></div>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Hasta 60 Mbps*</li>
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Router Wi‑Fi Doble Banda</li>
-          <li class="flex gap-2"><span class="text-emerald-600">✔</span> Asistencia remota ilimitada</li>
-        </ul>
-        <a href="#contacto" class="mt-6 inline-block w-full text-center px-4 py-2.5 rounded-xl bg-[--color-brand] text-white font-medium hover:bg-[--color-brand-600]">Elegir</a>
-      </div>
-    </div>
-    <p class="mt-4 text-xs text-slate-400">*Velocidades referenciales según cobertura, equipo y congestión. Consulta disponibilidad.</p>
-  </section>
-
-  <!-- Servicio Técnico de Celulares -->
-  <section id="tecnico" class="bg-slate-50 border-y border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold">Servicio técnico profesional de celulares</h2>
-        <p class="mt-3 text-slate-600">Diagnóstico rápido y repuestos de calidad. Garantía por escrito.</p>
-        <ul class="mt-6 grid gap-3 text-sm">
-          <li class="flex gap-2 items-start"><span class="mt-1 text-emerald-600">✔</span> Cambio de pantallas, baterías, puertos de carga</li>
-          <li class="flex gap-2 items-start"><span class="mt-1 text-emerald-600">✔</span> Software: backups, recuperación, liberación</li>
-          <li class="flex gap-2 items-start"><span class="mt-1 text-emerald-600">✔</span> Accesorios y limpieza interna</li>
-		  <li class="flex gap-2 items-start"><span class="mt-1 text-emerald-600">✔</span> Cargadores Cables tipo C</li>
-		  <li class="flex gap-2 items-start"><span class="mt-1 text-emerald-600">✔</span> Fibra de vidrios para proteger tu equipo movil</li>
-        </ul>
-        <div class="mt-6 flex gap-3">
-          <a href="#contacto" class="px-5 py-3 rounded-xl bg-[--color-brand] text-white font-medium hover:bg-[--color-brand-600]">Reservar cita</a>
-          <a href="#faq" class="px-5 py-3 rounded-xl border border-slate-300 hover:bg-white font-medium">Ver preguntas</a>
-        </div>
-      </div>
-      <div class="relative">
-        <div class="aspect-[4/3] rounded-2xl shadow-xl bg-white border border-slate-200 p-6 flex items-center justify-center">
-          <svg class="w-full h-full" viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="60" y="40" width="200" height="370" rx="28" fill="#e2e8f0"/>
-            <rect x="340" y="40" width="200" height="370" rx="28" fill="#e2e8f0"/>
-            <circle cx="160" cy="80" r="8" fill="#94a3b8"/>
-            <rect x="110" y="120" width="100" height="160" rx="12" fill="#0ea5e9" opacity=".15"/>
-            <rect x="390" y="120" width="100" height="160" rx="12" fill="#0ea5e9" opacity=".15"/>
-            <path d="M110 310h100M390 310h100" stroke="#94a3b8" stroke-width="10" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cobertura -->
-  <section id="cobertura" class="max-w-6xl mx-auto px-4 py-16">
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold">Cobertura local</h2>
-        <p class="mt-3 text-slate-600">Instalamos en tu zona según evaluación técnica. Escríbenos tu dirección y te confirmamos disponibilidad.</p>
-        <form class="mt-6 grid sm:grid-cols-[1fr_auto] gap-3" onsubmit="event.preventDefault(); document.getElementById('whmsg').click();">
-          <input type="text" placeholder="Ej: Jr. Los Olivos 123, Distrito" class="px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[--color-brand]" />
-          <a id="whmsg" href="https://wa.me/51935128270?text=Hola%20MEDINA%2C%20quiero%20saber%20si%20hay%20cobertura%20en%20mi%20direcci%C3%B3n." target="_blank" class="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 inline-flex items-center justify-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 2.02.53 3.93 1.46 5.58L.5 23.5l6.2-1.41A11.47 11.47 0 0 0 12 23.5c6.35 0 11.5-5.15 11.5-11.5S18.35.5 12 .5Zm0 2c5.25 0 9.5 4.25 9.5 9.5S17.25 21.5 12 21.5c-1.63 0-3.17-.4-4.52-1.1l-.32-.16-3.7.84.81-3.61-.17-.33A9.46 9.46 0 0 1 2.5 12C2.5 6.75 6.75 2.5 12 2.5Zm5.03 5.42c-.26-.61-.53-.62-.78-.63-.2-.01-.43-.01-.66-.01s-.62.09-.94.44c-.32.35-1.23 1.2-1.23 2.92 0 1.72 1.26 3.39 1.43 3.62.18.23 2.42 3.88 5.97 5.28.83.36 1.48.58 1.98.74.83.26 1.58.22 2.18.13.67-.1 2.08-.85 2.37-1.68.29-.83.29-1.54.2-1.69-.09-.15-.32-.23-.66-.41-.35-.18-2.08-1.03-2.41-1.15-.32-.12-.56-.18-.8.18-.23.35-.92 1.14-1.13 1.37-.21.23-.42.26-.77.09-.35-.17-1.49-.55-2.83-1.77-1.05-.94-1.76-2.12-1.97-2.47-.21-.35-.02-.54.16-.72.16-.16.35-.42.53-.63.18-.21.24-.35.36-.58.12-.23.06-.44-.03-.62Z"/></svg>
-            Consultar por WhatsApp
-          </a>
-        </form>
-        <p class="mt-2 text-xs text-slate-400">Enviamos <strong>tu ubicacion</strong>  a nuestro whatsapp sin compromiso.</p>
-      </div>
-      <div class="rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="aspect-[4/3] rounded-xl bg-gradient-to-br from-white to-sky-50 flex items-center justify-center">
-          <div class="text-center">
-            <div class="text-6xl">📶</div>
-            <p class="mt-3 text-slate-600">Señal optimizada con antenas exteriores e interiores según zona</p>
+Si ya realizaste el pago, por favor, espera unos minutos o contacta con nuestro soporte.</div>
           </div>
         </div>
+        <aside class="status">
+          <h4>ESTADO</h4>
+          <div class="state">SUSPENDIDO</div>
+          <div class="eta" id="eta">Tiempo estimado: 1 horas</div>
+          <div id="updated" style="margin-top:10px;font-size:12px;color:rgba(200,230,255,0.7)">Calculando...</div>
+        </aside>
       </div>
     </div>
-  </section>
- 
-<!-- Nueva sección de mantenimiento -->
-  <section id="mantenimiento" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl md:text-4xl font-bold text-center">Mantenimiento de Computadoras</h2>
-    <p class="mt-3 text-slate-600 text-center max-w-2xl mx-auto">Ofrecemos mantenimiento preventivo y correctivo de computadoras y laptops. Limpieza, optimización, actualización de software y hardware, y recuperación de datos.</p>
-    <div class="mt-10 grid md:grid-cols-3 gap-6">
-      <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 p-6 text-center">
-        <h3 class="text-xl font-semibold mb-2">Mantenimiento Preventivo</h3>
-        <p class="text-slate-600 mb-4">Limpieza física y revisión de componentes para prolongar la vida útil de tus equipos.</p>
-      </div>
-      <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 p-6 text-center">
-        <h3 class="text-xl font-semibold mb-2">Optimización de Software</h3>
-        <p class="text-slate-600 mb-4">Actualización y configuración de sistemas operativos y programas para un mejor rendimiento.</p>
-      </div>
-      <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 p-6 text-center">
-        <h3 class="text-xl font-semibold mb-2">Recuperación de Datos</h3>
-        <p class="text-slate-600 mb-4">Recuperación segura de archivos borrados o dañados.</p>
-      </div>
-    </div>
-  </section>
-  <!-- Preguntas frecuentes -->
-  <section id="faq" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl md:text-4xl font-bold text-center">Preguntas frecuentes</h2>
-    <div class="mt-8 grid md:grid-cols-2 gap-6">
-      <details class="rounded-xl border border-slate-200 p-5">
-        <summary class="font-semibold cursor-pointer">¿Hay costos de instalación?</summary>
-        <p class="mt-2 text-slate-600">Instalación estándar promocional desde. según evaluación y permanencia mínima. Te confirmamos en la visita técnica.</p>
-      </details>
-      <details class="rounded-xl border border-slate-200 p-5">
-        <summary class="font-semibold cursor-pointer">¿Los planes tienen tope de datos?</summary>
-        <p class="mt-2 text-slate-600">Navegación <em>ilimitada</em> con política de uso justo. Las velocidades pueden ajustarse en congestión para garantizar servicio a todos.</p>
-      </details>
-      <details class="rounded-xl border border-slate-200 p-5">
-        <summary class="font-semibold cursor-pointer">¿Qué necesito para contratar?</summary>
-        <p class="mt-2 text-slate-600">Documento de identidad, dirección exacta y un punto de energía cercano al lugar de instalación del router.</p>
-      </details>
-      <details class="rounded-xl border border-slate-200 p-5">
-        <summary class="font-semibold cursor-pointer">¿Reparan celulares de todas las marcas?</summary>
-        <p class="mt-2 text-slate-600">Sí. Trabajamos con marcas como Samsung, Xiaomi, Motorola, Apple y más. Usamos repuestos de calidad con garantía.</p>
-      </details>
-	    <details class="rounded-xl border border-slate-200 p-5">
-        <summary class="font-semibold cursor-pointer">¿Mantenimiento de PC y software?</summary>
-        <p class="mt-2 text-slate-600">Formateo, limpieza, optimización de rendimiento, eliminación de virus y respaldo de datos para equipos de escritorio y laptops.</p>
-      </details>
-    </div>
-  </section>
- 
-  <!-- Contacto -->
-  <section id="contacto" class="bg-slate-900 text-white">
-    <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold">¿Listo para conectarte?</h2>
-        <p class="mt-3 text-slate-300">Escríbenos por WhatsApp o llámanos. Respuesta rápida.</p>
-        <div class="mt-6 grid gap-3">
-          <a href="https://wa.me/51935128270?text=Hola%20MEDINA%2C%20quiero%20instalar%20Internet%20inal%C3%A1mbrico%20desde%20S%2F30." target="_blank" class="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 w-max">
-            <span class="text-xl">🟢</span> <span class="font-medium">WhatsApp</span>
-          </a>
-          <a href="tel:+51935128270" class="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-white text-slate-900 hover:bg-slate-100 w-max">
-            <span class="text-xl">📞</span> <span class="font-medium">Llámanos</span>
-          </a>
-          <p class="text-xs text-slate-400">Consultamos <strong>sin  ningún</strong> compromiso.</p>
-        </div>
-      </div>
-      <div class="rounded-2xl bg-white/5 p-6 border border-white/10">
-        <form class="grid gap-3" onsubmit="event.preventDefault(); alert('Gracias, te contactaremos.');">
-          <label class="grid gap-1 text-sm">Nombre<input required class="px-4 py-3 rounded-xl bg-white text-slate-900" placeholder="Tu nombre"/></label>
-          <label class="grid gap-1 text-sm">Distrito<input required class="px-4 py-3 rounded-xl bg-white text-slate-900" placeholder="Ej: Viracochan"/></label>
-          <label class="grid gap-1 text-sm">Teléfono<input required class="px-4 py-3 rounded-xl bg-white text-slate-900" placeholder="9XXXXXXXX"/></label>
-          <button class="mt-2 px-5 py-3 rounded-xl bg-[--color-brand] hover:bg-[--color-brand-600] font-medium">Solicitar información</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="max-w-6xl mx-auto px-4 py-10 text-sm text-slate-500">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <p>© <span id="year"></span> MEDINA Net. Todos los derechos reservados.</p>
-      <div class="flex items-center gap-4">
-        <a href="#" class="hover:text-[--color-brand]">Términos</a>
-        <a href="#" class="hover:text-[--color-brand]">Privacidad</a>
-        <a href="#faq" class="hover:text-[--color-brand]">Ayuda</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WhatsApp floating button -->
-  <a href="https://wa.me/51935128270?text=Hola%20MEDINA%2C%20necesito%20informaci%C3%B3n%20de%20planes%20y%20servicio%20t%C3%A9cnico." target="_blank" class="fixed bottom-5 right-5 h-14 w-14 rounded-full shadow-lg grid place-items-center bg-emerald-500 hover:bg-emerald-600 text-white" aria-label="WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 2.02.53 3.93 1.46 5.58L.5 23.5l6.2-1.41A11.47 11.47 0 0 0 12 23.5c6.35 0 11.5-5.15 11.5-11.5S18.35.5 12 .5Zm0 2c5.25 0 9.5 4.25 9.5 9.5S17.25 21.5 12 21.5c-1.63 0-3.17-.4-4.52-1.1l-.32-.16-3.7.84.81-3.61-.17-.33A9.46 9.46 0 0 1 2.5 12C2.5 6.75 6.75 2.5 12 2.5Zm5.03 5.42c-.26-.61-.53-.62-.78-.63-.2-.01-.43-.01-.66-.01s-.62.09-.94.44c-.32.35-1.23 1.2-1.23 2.92 0 1.72 1.26 3.39 1.43 3.62.18.23 2.42 3.88 5.97 5.28.83.36 1.48.58 1.98.74.83.26 1.58.22 2.18.13.67-.1 2.08-.85 2.37-1.68.29-.83.29-1.54.2-1.69-.09-.15-.32-.23-.66-.41-.35-.18-2.08-1.03-2.41-1.15-.32-.12-.56-.18-.8.18-.23.35-.92 1.14-1.13 1.37-.21.23-.42.26-.77.09-.35-.17-1.49-.55-2.83-1.77-1.05-.94-1.76-2.12-1.97-2.47-.21-.35-.02-.54.16-.72.16-.16.35-.42.53-.63.18-.21.24-.35.36-.58.12-.23.06-.44-.03-.62Z"/></svg>
-  </a>
-
+  </div>
   <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Mobile menu
-    const btn = document.getElementById('menuBtn');
-    const nav = document.getElementById('mobileNav');
-    btn?.addEventListener('click', ()=> nav.classList.toggle('hidden'));
+    document.addEventListener('DOMContentLoaded',()=>{
+      const eta=document.getElementById('eta');
+      const updated=document.getElementById('updated');
+      const refresh=document.getElementById('refreshBtn');
+      const report=document.getElementById('reportBtn');
+
+      function reportIssue(){
+        try{
+          const to='soporte@alexistech.com';
+          const subject=encodeURIComponent('Incidencia ERR-909');
+          const now=new Date().toLocaleString('es-PE');
+          const body=encodeURIComponent('Hola soporte, estoy con problemas con mi conexión.\nHora del reporte: '+now);
+          const mailto='mailto:'+to+'?subject='+subject+'&body='+body;
+          window.location.href=mailto;
+          return {ok:true,mailto};
+        }catch(e){return{ok:false,error:e.message};}
+      }
+
+      function updateTime(){
+        const d=new Date();
+        updated.textContent='Última actualización: '+d.toLocaleString('es-ES');
+      }
+
+      refresh.addEventListener('click',()=>{
+        eta.textContent='Reintentando conexión...';
+        setTimeout(()=>eta.textContent='Tiempo estimado: 1 horas',2500);
+      });
+      report.addEventListener('click',reportIssue);
+
+      updateTime();
+      setInterval(updateTime,60000);
+    });
   </script>
 </body>
 </html>
+
